@@ -28,7 +28,7 @@ public class Order implements Serializable {
     @Column(name = "order_number")
     private Integer number;
 
-    @Column(name = "order_date")
+    @Column(name = "order_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date = new Date();

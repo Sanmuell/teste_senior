@@ -25,7 +25,6 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@onetomany ??
     private Long itemId;
 
     @Column(name = "item_description")
