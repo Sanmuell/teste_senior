@@ -2,7 +2,7 @@ package br.com.senior.domain.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -26,7 +26,7 @@ public class OrderService {
 	}
 
 	@Transactional
-	public Optional<Order> read(UUID id) {
+	public Optional<Order> read(Long id) {
 		return orderRepository.findById(id);
 	}
 
@@ -52,7 +52,7 @@ public class OrderService {
 	}
 
 	@Transactional
-	public void delete(UUID orderID) {
+	public void delete(Long orderID) {
 
 		orderRepository.deleteById(orderID);
 

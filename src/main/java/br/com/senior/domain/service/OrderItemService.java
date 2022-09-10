@@ -2,7 +2,7 @@ package br.com.senior.domain.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -26,7 +26,7 @@ public class OrderItemService {
 	}
 
 	@Transactional
-	public Optional<OrderItem> read(UUID id) {
+	public Optional<OrderItem> read(Long id) {
 		return orderItemRepository.findById(id);
 	}
 
@@ -34,9 +34,9 @@ public class OrderItemService {
 	public OrderItem create(OrderItemDTO orderItemDTO) {
 
 		OrderItem orderItem = new OrderItem();
-		orderItem.setOderId(orderItemDTO.getOrderId());
+		orderItem.setOrderId(orderItemDTO.getOrderId());
 		orderItem.setItemId(orderItemDTO.getItemId());
-		orderItem.setOderId(orderItemDTO.getOrderId());
+		orderItem.setOrderId(orderItemDTO.getOrderId());
 		orderItem.setQuantity(orderItemDTO.getQuantity());
 
 		return orderItemRepository.save(orderItem);

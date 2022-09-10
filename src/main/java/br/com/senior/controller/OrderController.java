@@ -2,7 +2,7 @@ package br.com.senior.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +36,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/{orderID}")
-	public ResponseEntity<Order> readOrder(@PathVariable UUID orderID) {
+	public ResponseEntity<Order> readOrder(@PathVariable Long orderID) {
 		Optional<Order> order = this.orderService.read(orderID);
 		return order.isPresent() ? ResponseEntity.ok(order.get()) : ResponseEntity.notFound().build();
 	}
@@ -49,14 +49,14 @@ public class OrderController {
 	}
 
 	@PutMapping("/{orderID}")
-	public Order update(@RequestBody OrderDTO orderDTO, @PathVariable UUID orderID) {
+	public Order update(@RequestBody OrderDTO orderDTO, @PathVariable Long orderID) {
 		Order orderRead = orderService.read(orderID).orElseThrow(IllegalArgumentException::new);
 		return orderService.update(orderRead, orderDTO);
 
 	}
 
 	@DeleteMapping("/{orderID}")
-	public void deleteOrder(@PathVariable UUID orderID) {
+	public void deleteOrder(@PathVariable Long orderID) {
 		orderService.delete(orderID);
 
 	}

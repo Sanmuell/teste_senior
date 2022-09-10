@@ -1,7 +1,16 @@
 package br.com.senior.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class OrderDTO {
 
 	private Integer number;
@@ -12,46 +21,5 @@ public class OrderDTO {
 
 	private Double totalValue;
 
-	public OrderDTO() {
-	}
-
-	public OrderDTO(Integer number, Date date, Double percentualDiscount, Double totalValue) {
-		this.number = number;
-		this.date = date;
-		this.percentualDiscount = percentualDiscount;
-		this.totalValue = totalValue;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Double getPercentualDiscount() {
-		return percentualDiscount;
-	}
-
-	public void setPercentualDiscount(Double percentualDiscount) {
-		this.percentualDiscount = percentualDiscount;
-	}
-
-	public Double getTotalValue() {
-		return totalValue;
-	}
-
-	public void setTotalValue(Double totalValue) {
-		this.totalValue = totalValue;
-	}
 
 }

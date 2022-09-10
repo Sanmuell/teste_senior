@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -26,7 +26,7 @@ public class ItemService {
 	}
 
 	@Transactional
-	public Optional<Item> read(UUID id) {
+	public Optional<Item> read(Long id) {
 		return itemRepository.findById(id);
 	}
 
@@ -50,7 +50,7 @@ public class ItemService {
 	}
 
 	@Transactional
-	public void delete(UUID itemID) {
+	public void delete(Long itemID) {
 
 		itemRepository.deleteById(itemID);
 

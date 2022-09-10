@@ -2,7 +2,7 @@ package br.com.senior.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +36,7 @@ public class ItemController {
 	}
 
 	@GetMapping("/{itemID}")
-	public ResponseEntity<Item> readItem(@PathVariable UUID itemID) {
+	public ResponseEntity<Item> readItem(@PathVariable Long itemID) {
 		Optional<Item> item = this.itemService.read(itemID);
 		return item.isPresent() ? ResponseEntity.ok(item.get()) : ResponseEntity.notFound().build();
 	}
@@ -49,14 +49,14 @@ public class ItemController {
 	}
 
 	@PutMapping("/{itemID}")
-	public Item updateItem(@RequestBody ItemDTO itemDTO, @PathVariable UUID itemID) {
+	public Item updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long itemID) {
 		Item itemRead = itemService.read(itemID).orElseThrow(IllegalArgumentException::new);
 		return itemService.update(itemRead, itemDTO);
 
 	}
 
 	@DeleteMapping("/{itemID}")
-	public void deleteItem(@PathVariable UUID itemID) {
+	public void deleteItem(@PathVariable Long itemID) {
 		itemService.delete(itemID);
 
 	}

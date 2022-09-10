@@ -2,7 +2,7 @@ package br.com.senior.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,20 +37,20 @@ public class OrderItemController {
 	}
 
 	@GetMapping("/{orderId}/items/{orderItemId}")
-	public ResponseEntity<OrderItem> readOrderItem(@PathVariable UUID orderItemId) {
+	public ResponseEntity<OrderItem> readOrderItem(@PathVariable Long orderItemId) {
 		Optional<OrderItem> orderItem = this.orderItemRepository.findById(orderItemId);
 		return orderItem.isPresent() ? ResponseEntity.ok(orderItem.get()) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping("/{orderId}/items/")
-	public ResponseEntity<OrderItem> create(@PathVariable UUID orderId, @RequestBody OrderItemDTO orderItemDTO) {
+	public ResponseEntity<OrderItem> create(@PathVariable Long orderId, @RequestBody OrderItemDTO orderItemDTO) {
 		OrderItem itemCreated = this.orderItemService.create(orderItemDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(itemCreated);
 
 	}
 
 	@PutMapping("/{orderId}/items/{orderItemId}")
-	public OrderItem update(@PathVariable UUID orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
+	public OrderItem update(@PathVariable Long orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
 		OrderItem orderItemRead = orderItemService.read(orderItemId).orElseThrow(IllegalArgumentException::new);
 		return orderItemService.update(orderItemRead, orderItemDTO);
 
