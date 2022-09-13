@@ -6,21 +6,16 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.senior.domain.repository.OrderRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.senior.domain.service.OrderService;
-import br.com.senior.model.Order;
-import br.com.senior.model.dto.OrderDTO;
+import br.com.senior.domain.model.Order;
+import br.com.senior.domain.model.dto.OrderDTO;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -29,11 +24,21 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+	@Autowired
+	private OrderRepository orderRepository;
+
 	@GetMapping
 	public List<Order> list() {
 		return orderService.list();
 
 	}
+
+	@GetMapping("/por-numero")
+	public List<Order> listByNumber(@RequestParam ("number") Integer number){
+		return orderRepository.number(number);
+	}
+
+
 
 	@GetMapping("/{orderID}")
 	public ResponseEntity<Order> readOrder(@PathVariable Long orderID) {
@@ -49,9 +54,11 @@ public class OrderController {
 	}
 
 	@PutMapping("/{orderID}")
-	public Order update(@RequestBody OrderDTO orderDTO, @PathVariable Long orderID) {
+	public ResponseEntity<Order> update(@RequestBody OrderDTO orderDTO, @PathVariable Long orderID) {
 		Order orderRead = orderService.read(orderID).orElseThrow(IllegalArgumentException::new);
-		return orderService.update(orderRead, orderDTO);
+		BeanUtils.copyProperties(orderDTO, orderRead );
+		orderService.update(orderRead, orderDTO);
+		return ResponseEntity.ok(orderRead);
 
 	}
 

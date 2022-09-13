@@ -1,4 +1,4 @@
-package br.com.senior.model;
+package br.com.senior.domain.model;
 
 import java.io.Serializable;
 

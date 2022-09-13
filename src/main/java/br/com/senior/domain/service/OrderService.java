@@ -9,9 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.senior.model.Order;
-import br.com.senior.model.dto.OrderDTO;
-import br.com.senior.respository.OrderRepository;
+import br.com.senior.domain.model.Order;
+import br.com.senior.domain.model.dto.OrderDTO;
+import br.com.senior.domain.repository.OrderRepository;
 
 @Service
 public class OrderService {

@@ -4,21 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.senior.domain.service.OrderItemService;
-import br.com.senior.model.OrderItem;
-import br.com.senior.model.dto.OrderItemDTO;
-import br.com.senior.respository.OrderItemRepository;
+import br.com.senior.domain.model.OrderItem;
+import br.com.senior.domain.model.dto.OrderItemDTO;
+import br.com.senior.domain.repository.OrderItemRepository;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -48,11 +43,13 @@ public class OrderItemController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(itemCreated);
 
 	}
-
 	@PutMapping("/{orderId}/items/{orderItemId}")
-	public OrderItem update(@PathVariable Long orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
+	public ResponseEntity<OrderItem> update(@PathVariable Long orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
 		OrderItem orderItemRead = orderItemService.read(orderItemId).orElseThrow(IllegalArgumentException::new);
-		return orderItemService.update(orderItemRead, orderItemDTO);
+		BeanUtils.copyProperties(orderItemDTO, orderItemRead );
+		orderItemService.update(orderItemRead, orderItemDTO);
+		return ResponseEntity.ok(orderItemRead);
+
 
 	}
 
