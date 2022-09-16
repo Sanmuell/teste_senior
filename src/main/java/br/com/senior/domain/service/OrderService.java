@@ -37,6 +37,7 @@ public class OrderService {
 		order.setNumber(orderDTO.getNumber());
 		order.setDate(orderDTO.getDate());
 		order.setPercentualDiscount(orderDTO.getPercentualDiscount());
+		order.setTotalValue(orderDTO.getTotalValue());
 
 		return orderRepository.save(order);
 	}
@@ -47,6 +48,7 @@ public class OrderService {
 		order.setNumber(orderDTO.getNumber());
 		order.setDate(orderDTO.getDate());
 		order.setPercentualDiscount(orderDTO.getPercentualDiscount());
+		order.setTotalValue(orderDTO.getTotalValue());
 
 		return orderRepository.save(order);
 	}

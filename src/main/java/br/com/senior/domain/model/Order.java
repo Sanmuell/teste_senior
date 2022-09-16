@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,6 +32,7 @@ public class Order implements Serializable {
     @Column(name = "order_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @CreationTimestamp
     private Date date = new Date();
 
     @Column(name = "order_disccount")

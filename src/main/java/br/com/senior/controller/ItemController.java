@@ -41,6 +41,7 @@ public class ItemController {
 		return itemRepository.findByDescriptionContainingIgnoreCase(description);
 	}
 
+
 	@GetMapping("/{itemID}")
 	public ResponseEntity<Item> readItem(@PathVariable Long itemID) {
 		Optional<Item> item = this.itemService.read(itemID);

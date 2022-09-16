@@ -12,8 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -35,6 +35,7 @@ public class Item implements Serializable {
 
     @Column(name = "item_type")
     private Character type;
+
 
 
 }
