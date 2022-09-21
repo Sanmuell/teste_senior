@@ -18,7 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Setter @Getter
 @Entity
 @Table(name = "ORDERS_TB")
-public class Order implements Serializable {
+public class OrderEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

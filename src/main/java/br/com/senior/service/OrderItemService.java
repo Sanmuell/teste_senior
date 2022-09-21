@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.senior.model.OrderItem;
+import br.com.senior.model.OrderItemEntity;
 import br.com.senior.model.dto.OrderItemDTO;
 import br.com.senior.repository.OrderItemRepository;
 
@@ -20,35 +20,35 @@ public class OrderItemService {
 	private OrderItemRepository orderItemRepository;
 
 	@Transactional
-	public List<OrderItem> list() {
+	public List<OrderItemEntity> list() {
 		return orderItemRepository.findAll();
 
 	}
 
 	@Transactional
-	public Optional<OrderItem> read(Long id) {
+	public Optional<OrderItemEntity> read(Long id) {
 		return orderItemRepository.findById(id);
 	}
 
 	@Transactional
-	public OrderItem create(OrderItemDTO orderItemDTO) {
+	public OrderItemEntity create(OrderItemDTO orderItemDTO) {
 
-		OrderItem orderItem = new OrderItem();
-		orderItem.setOrderId(orderItemDTO.getOrderId());
-		orderItem.setItemId(orderItemDTO.getItemId());
-		orderItem.setOrderId(orderItemDTO.getOrderId());
-		orderItem.setQuantity(orderItemDTO.getQuantity());
+		OrderItemEntity orderItemEntity = new OrderItemEntity();
+		orderItemEntity.setOrderEntityId(orderItemDTO.getOrderEntityId());
+		orderItemEntity.setItemEntityId(orderItemDTO.getItemEntityId());
+		orderItemEntity.setOrderEntityId(orderItemDTO.getOrderEntityId());
+		orderItemEntity.setQuantity(orderItemDTO.getQuantity());
 
-		return orderItemRepository.save(orderItem);
+		return orderItemRepository.save(orderItemEntity);
 	}
 
 	@Transactional
-	public OrderItem update(OrderItem orderItem, OrderItemDTO orderItemDTO) {
+	public OrderItemEntity update(OrderItemEntity orderItemEntity, OrderItemDTO orderItemDTO) {
 
-		orderItem.setItemId(orderItemDTO.getItemId());
-		orderItem.setQuantity(orderItemDTO.getQuantity());
+		orderItemEntity.setItemEntityId(orderItemDTO.getItemEntityId());
+		orderItemEntity.setQuantity(orderItemDTO.getQuantity());
 
-		return orderItemRepository.save(orderItem);
+		return orderItemRepository.save(orderItemEntity);
 	}
 
 }

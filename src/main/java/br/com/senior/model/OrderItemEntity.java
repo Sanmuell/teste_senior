@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "ORDERS_ITEMS_TB")
 
-public class OrderItem implements Serializable {
+public class OrderItemEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -29,12 +29,12 @@ public class OrderItem implements Serializable {
     @ManyToOne
    @JoinColumn(name = "item_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Item itemId;
+    private ItemEntity itemEntityId;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Order orderId;
+    private OrderEntity orderEntityId;
 
     private Double quantity;
 

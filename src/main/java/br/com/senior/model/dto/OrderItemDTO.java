@@ -1,7 +1,7 @@
 package br.com.senior.model.dto;
 
-import br.com.senior.model.Item;
-import br.com.senior.model.Order;
+import br.com.senior.model.ItemEntity;
+import br.com.senior.model.OrderEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +18,8 @@ import lombok.Setter;
 public class OrderItemDTO {
 
 	@JsonIgnore
-	private Order orderId;
-	private Item itemId;
+	private OrderEntity orderEntityId;
+	private ItemEntity itemEntityId;
 	private Double quantity;
 
 

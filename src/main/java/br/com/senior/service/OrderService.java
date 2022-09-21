@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import br.com.senior.model.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.senior.model.Order;
 import br.com.senior.model.dto.OrderDTO;
 import br.com.senior.repository.OrderRepository;
 
@@ -20,37 +20,37 @@ public class OrderService {
 	private OrderRepository orderRepository;
 
 	@Transactional
-	public List<Order> list() {
+	public List<OrderEntity> list() {
 		return orderRepository.findAll();
 
 	}
 
 	@Transactional
-	public Optional<Order> read(Long id) {
+	public Optional<OrderEntity> read(Long id) {
 		return orderRepository.findById(id);
 	}
 
 	@Transactional
-	public Order create(OrderDTO orderDTO) {
+	public OrderEntity create(OrderDTO orderDTO) {
 
-		Order order = new Order();
-		order.setNumber(orderDTO.getNumber());
-		order.setDate(orderDTO.getDate());
-		order.setPercentualDiscount(orderDTO.getPercentualDiscount());
-		order.setTotalValue(orderDTO.getTotalValue());
+		OrderEntity orderEntity = new OrderEntity();
+		orderEntity.setNumber(orderDTO.getNumber());
+		orderEntity.setDate(orderDTO.getDate());
+		orderEntity.setPercentualDiscount(orderDTO.getPercentualDiscount());
+		orderEntity.setTotalValue(orderDTO.getTotalValue());
 
-		return orderRepository.save(order);
+		return orderRepository.save(orderEntity);
 	}
 
 	@Transactional
-	public Order update(Order order, OrderDTO orderDTO) {
+	public OrderEntity update(OrderEntity orderEntity, OrderDTO orderDTO) {
 
-		order.setNumber(orderDTO.getNumber());
-		order.setDate(orderDTO.getDate());
-		order.setPercentualDiscount(orderDTO.getPercentualDiscount());
-		order.setTotalValue(orderDTO.getTotalValue());
+		orderEntity.setNumber(orderDTO.getNumber());
+		orderEntity.setDate(orderDTO.getDate());
+		orderEntity.setPercentualDiscount(orderDTO.getPercentualDiscount());
+		orderEntity.setTotalValue(orderDTO.getTotalValue());
 
-		return orderRepository.save(order);
+		return orderRepository.save(orderEntity);
 	}
 
 	@Transactional

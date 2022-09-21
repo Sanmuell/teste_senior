@@ -1,6 +1,7 @@
 package br.com.senior.service;
 
 import br.com.senior.exception.EntityNotFoundException;
+import br.com.senior.model.ItemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import br.com.senior.model.Item;
 import br.com.senior.model.dto.ItemDTO;
 import br.com.senior.repository.ItemRepository;
 
@@ -22,34 +22,34 @@ public class ItemService {
 	private ItemRepository itemRepository;
 
 	@Transactional
-	public List<Item> list() {
+	public List<ItemEntity> list() {
 		return itemRepository.findAll();
 
 	}
 
 	@Transactional
-	public Optional<Item> read(Long id) {
+	public Optional<ItemEntity> read(Long id) {
 		return itemRepository.findById(id);
 	}
 
 	@Transactional
-	public Item create(ItemDTO itemDTO) {
+	public ItemEntity create(ItemDTO itemDTO) {
 
-		Item item = new Item();
-		item.setDescription(itemDTO.getDescription());
-		item.setType(itemDTO.getType());
-		item.setValue(itemDTO.getValue());
-		return itemRepository.save(item);
+		ItemEntity itemEntity = new ItemEntity();
+		itemEntity.setDescription(itemDTO.getDescription());
+		itemEntity.setType(itemDTO.getType());
+		itemEntity.setValue(itemDTO.getValue());
+		return itemRepository.save(itemEntity);
 	}
 
 	@Transactional
-	public Item update(Item item, ItemDTO itemDTO) {
+	public ItemEntity update(ItemEntity itemEntity, ItemDTO itemDTO) {
 
-		item.setDescription(itemDTO.getDescription());
-		item.setType(itemDTO.getType());
-		item.setValue(itemDTO.getValue());
+		itemEntity.setDescription(itemDTO.getDescription());
+		itemEntity.setType(itemDTO.getType());
+		itemEntity.setValue(itemDTO.getValue());
 
-		return itemRepository.save(item);
+		return itemRepository.save(itemEntity);
 	}
 
 	@Transactional

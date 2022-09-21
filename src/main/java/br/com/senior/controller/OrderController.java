@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.senior.model.OrderEntity;
 import br.com.senior.repository.OrderRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.senior.service.OrderService;
-import br.com.senior.model.Order;
 import br.com.senior.model.dto.OrderDTO;
 
 @RestController
@@ -28,37 +28,37 @@ public class OrderController {
 	private OrderRepository orderRepository;
 
 	@GetMapping
-	public List<Order> list() {
+	public List<OrderEntity> list() {
 		return orderService.list();
 
 	}
 
 	@GetMapping("/por-numero")
-	public List<Order> listByNumber(@RequestParam ("number") Integer number){
+	public List<OrderEntity> listByNumber(@RequestParam ("number") Integer number){
 		return orderRepository.number(number);
 	}
 
 
 
 	@GetMapping("/{orderID}")
-	public ResponseEntity<Order> readOrder(@PathVariable Long orderID) {
-		Optional<Order> order = this.orderService.read(orderID);
+	public ResponseEntity<OrderEntity> readOrder(@PathVariable Long orderID) {
+		Optional<OrderEntity> order = this.orderService.read(orderID);
 		return order.isPresent() ? ResponseEntity.ok(order.get()) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping()
-	public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO, HttpServletResponse response) {
-		Order orderCreated = orderService.create(orderDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(orderCreated);
+	public ResponseEntity<OrderEntity> createOrder(@RequestBody OrderDTO orderDTO, HttpServletResponse response) {
+		OrderEntity orderEntityCreated = orderService.create(orderDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(orderEntityCreated);
 
 	}
 
 	@PutMapping("/{orderID}")
-	public ResponseEntity<Order> update(@RequestBody OrderDTO orderDTO, @PathVariable Long orderID) {
-		Order orderRead = orderService.read(orderID).orElseThrow(IllegalArgumentException::new);
-		BeanUtils.copyProperties(orderDTO, orderRead );
-		orderService.update(orderRead, orderDTO);
-		return ResponseEntity.ok(orderRead);
+	public ResponseEntity<OrderEntity> update(@RequestBody OrderDTO orderDTO, @PathVariable Long orderID) {
+		OrderEntity orderEntityRead = orderService.read(orderID).orElseThrow(IllegalArgumentException::new);
+		BeanUtils.copyProperties(orderDTO, orderEntityRead);
+		orderService.update(orderEntityRead, orderDTO);
+		return ResponseEntity.ok(orderEntityRead);
 
 	}
 

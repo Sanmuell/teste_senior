@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.senior.service.ItemService;
-import br.com.senior.model.Item;
+import br.com.senior.model.ItemEntity;
 import br.com.senior.model.dto.ItemDTO;
 
 @RestController
@@ -29,45 +29,45 @@ public class ItemController {
 	private ItemRepository itemRepository;
 
 	@GetMapping
-	public List<Item> list() {
+	public List<ItemEntity> list() {
 		return itemService.list();
 
 	}
 
 	@GetMapping("/por-descricao")
-	public List<Item> findByDescription(@RequestParam("description") String description){
+	public List<ItemEntity> findByDescription(@RequestParam("description") String description){
 		return itemRepository.findByDescriptionContainingIgnoreCase(description);
 	}
 
 
 	@GetMapping("/{itemID}")
-	public ResponseEntity<Item> readItem(@PathVariable Long itemID) {
-		Optional<Item> item = this.itemService.read(itemID);
+	public ResponseEntity<ItemEntity> readItem(@PathVariable Long itemID) {
+		Optional<ItemEntity> item = this.itemService.read(itemID);
 		return item.isPresent() ? ResponseEntity.ok(item.get()) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping()
-	public ResponseEntity<Item> create(@RequestBody ItemDTO itemDTO, HttpServletResponse response) {
-		Item itemCreated = itemService.create(itemDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(itemCreated);
+	public ResponseEntity<ItemEntity> create(@RequestBody ItemDTO itemDTO, HttpServletResponse response) {
+		ItemEntity itemEntityCreated = itemService.create(itemDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(itemEntityCreated);
 
 	}
 
 	@PutMapping("/{itemID}")
-	public ResponseEntity<Item> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long itemID) {
-		Optional<Item> itemRead = itemService.read(itemID);
+	public ResponseEntity<ItemEntity> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long itemID) {
+		Optional<ItemEntity> itemRead = itemService.read(itemID);
 
 		if (itemRead.isPresent()) {
 			BeanUtils.copyProperties(itemDTO, itemRead.get());
-			Item itemActual = itemService.update(itemRead.get(), itemDTO);
-			return ResponseEntity.ok(itemActual);
+			ItemEntity itemEntityActual = itemService.update(itemRead.get(), itemDTO);
+			return ResponseEntity.ok(itemEntityActual);
 		}
 		return ResponseEntity.notFound().build();
 
 	}
 
 	@DeleteMapping("/{itemID}")
-	public ResponseEntity<Item> deleteItem(@PathVariable Long itemID) {
+	public ResponseEntity<ItemEntity> deleteItem(@PathVariable Long itemID) {
 		try {
 			itemService.delete(itemID);
 			return ResponseEntity.noContent().build();
