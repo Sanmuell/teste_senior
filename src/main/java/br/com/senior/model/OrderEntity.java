@@ -1,4 +1,4 @@
-package br.com.senior.domain.model;
+package br.com.senior.model;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package br.com.senior.domain.model.dto;
+package br.com.senior.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

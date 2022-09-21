@@ -1,9 +1,9 @@
-package br.com.senior.domain.model.dto;
+package br.com.senior.model.dto;
 
+import br.com.senior.model.Item;
+import br.com.senior.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.senior.domain.model.Item;
-import br.com.senior.domain.model.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

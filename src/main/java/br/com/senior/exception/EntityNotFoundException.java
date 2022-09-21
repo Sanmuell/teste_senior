@@ -1,4 +1,4 @@
-package br.com.senior.domain.exception;
+package br.com.senior.exception;
 
 public class EntityNotFoundException extends RuntimeException{
 

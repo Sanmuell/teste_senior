@@ -1,6 +1,6 @@
-package br.com.senior.domain.service;
+package br.com.senior.service;
 
-import br.com.senior.domain.exception.EntityNotFoundException;
+import br.com.senior.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import br.com.senior.domain.model.Item;
-import br.com.senior.domain.model.dto.ItemDTO;
-import br.com.senior.domain.repository.ItemRepository;
+import br.com.senior.model.Item;
+import br.com.senior.model.dto.ItemDTO;
+import br.com.senior.repository.ItemRepository;
 
 @Service
 public class ItemService {

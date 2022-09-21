@@ -6,19 +6,17 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.senior.domain.exception.EntityNotFoundException;
-import br.com.senior.domain.model.Order;
-import br.com.senior.domain.repository.ItemRepository;
-import org.apache.coyote.Response;
+import br.com.senior.exception.EntityNotFoundException;
+import br.com.senior.repository.ItemRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.senior.domain.service.ItemService;
-import br.com.senior.domain.model.Item;
-import br.com.senior.domain.model.dto.ItemDTO;
+import br.com.senior.service.ItemService;
+import br.com.senior.model.Item;
+import br.com.senior.model.dto.ItemDTO;
 
 @RestController
 @RequestMapping("/api/items")

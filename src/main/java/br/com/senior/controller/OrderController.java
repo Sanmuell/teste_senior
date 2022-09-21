@@ -6,16 +6,16 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.senior.domain.repository.OrderRepository;
+import br.com.senior.repository.OrderRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.senior.domain.service.OrderService;
-import br.com.senior.domain.model.Order;
-import br.com.senior.domain.model.dto.OrderDTO;
+import br.com.senior.service.OrderService;
+import br.com.senior.model.Order;
+import br.com.senior.model.dto.OrderDTO;
 
 @RestController
 @RequestMapping("/api/orders")

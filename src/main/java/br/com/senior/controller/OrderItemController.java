@@ -10,10 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.senior.domain.service.OrderItemService;
-import br.com.senior.domain.model.OrderItem;
-import br.com.senior.domain.model.dto.OrderItemDTO;
-import br.com.senior.domain.repository.OrderItemRepository;
+import br.com.senior.service.OrderItemService;
+import br.com.senior.model.OrderItem;
+import br.com.senior.model.dto.OrderItemDTO;
+import br.com.senior.repository.OrderItemRepository;
 
 @RestController
 @RequestMapping("/api/orders")
