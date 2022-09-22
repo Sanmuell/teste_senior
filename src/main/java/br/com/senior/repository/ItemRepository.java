@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 import br.com.senior.model.ItemEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
+public interface ItemRepository extends JpaRepository<ItemEntity, UUID> {
 
 
     List<ItemEntity> findByDescriptionContainingIgnoreCase (String description);

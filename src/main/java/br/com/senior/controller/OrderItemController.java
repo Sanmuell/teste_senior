@@ -2,6 +2,7 @@ package br.com.senior.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 import org.springframework.beans.BeanUtils;
@@ -32,7 +33,7 @@ public class OrderItemController {
 	}
 
 	@GetMapping("/{orderId}/items/{orderItemId}")
-	public ResponseEntity<OrderItemEntity> readOrderItem(@PathVariable Long orderItemId) {
+	public ResponseEntity<OrderItemEntity> readOrderItem(@PathVariable UUID orderItemId) {
 		Optional<OrderItemEntity> orderItem = this.orderItemRepository.findById(orderItemId);
 		return orderItem.isPresent() ? ResponseEntity.ok(orderItem.get()) : ResponseEntity.notFound().build();
 	}
@@ -44,7 +45,7 @@ public class OrderItemController {
 
 	}
 	@PutMapping("/{orderId}/items/{orderItemId}")
-	public ResponseEntity<OrderItemEntity> update(@PathVariable Long orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
+	public ResponseEntity<OrderItemEntity> update(@PathVariable UUID orderItemId, @RequestBody OrderItemDTO orderItemDTO) {
 		OrderItemEntity orderItemEntityRead = orderItemService.read(orderItemId).orElseThrow(IllegalArgumentException::new);
 		BeanUtils.copyProperties(orderItemDTO, orderItemEntityRead);
 		orderItemService.update(orderItemEntityRead, orderItemDTO);

@@ -2,6 +2,7 @@ package br.com.senior.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 import javax.transaction.Transactional;
@@ -26,7 +27,7 @@ public class OrderItemService {
 	}
 
 	@Transactional
-	public Optional<OrderItemEntity> read(Long id) {
+	public Optional<OrderItemEntity> read(UUID id) {
 		return orderItemRepository.findById(id);
 	}
 

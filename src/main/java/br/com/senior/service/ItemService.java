@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 import javax.transaction.Transactional;
@@ -28,7 +29,7 @@ public class ItemService {
 	}
 
 	@Transactional
-	public Optional<ItemEntity> read(Long id) {
+	public Optional<ItemEntity> read(UUID id) {
 		return itemRepository.findById(id);
 	}
 
@@ -53,7 +54,7 @@ public class ItemService {
 	}
 
 	@Transactional
-	public void delete(Long itemID) {
+	public void delete(UUID itemID) {
 		try {
 			itemRepository.deleteById(itemID);
 		}catch (EmptyResultDataAccessException e){

@@ -2,6 +2,7 @@ package br.com.senior.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +42,7 @@ public class ItemController {
 
 
 	@GetMapping("/{itemID}")
-	public ResponseEntity<ItemEntity> readItem(@PathVariable Long itemID) {
+	public ResponseEntity<ItemEntity> readItem(@PathVariable UUID itemID) {
 		Optional<ItemEntity> item = this.itemService.read(itemID);
 		return item.isPresent() ? ResponseEntity.ok(item.get()) : ResponseEntity.notFound().build();
 	}
@@ -54,7 +55,7 @@ public class ItemController {
 	}
 
 	@PutMapping("/{itemID}")
-	public ResponseEntity<ItemEntity> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long itemID) {
+	public ResponseEntity<ItemEntity> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable UUID itemID) {
 		Optional<ItemEntity> itemRead = itemService.read(itemID);
 
 		if (itemRead.isPresent()) {
@@ -67,7 +68,7 @@ public class ItemController {
 	}
 
 	@DeleteMapping("/{itemID}")
-	public ResponseEntity<ItemEntity> deleteItem(@PathVariable Long itemID) {
+	public ResponseEntity<ItemEntity> deleteItem(@PathVariable UUID itemID) {
 		try {
 			itemService.delete(itemID);
 			return ResponseEntity.noContent().build();

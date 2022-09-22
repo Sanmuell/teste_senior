@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import br.com.senior.model.OrderItemEntity;
 
+import java.util.UUID;
+
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItemEntity, Long> {
+public interface OrderItemRepository extends JpaRepository<OrderItemEntity, UUID> {
 
 }
