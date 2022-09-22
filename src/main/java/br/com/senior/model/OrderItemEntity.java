@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -22,12 +23,13 @@ public class OrderItemEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
     @Column(name = "order_item_id")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID orderItemId;
 
     @ManyToOne
-   @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ItemEntity itemEntityId;
 
