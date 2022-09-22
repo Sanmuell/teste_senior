@@ -8,6 +8,7 @@ import java.util.Arrays;
 import br.com.senior.model.ItemEntity;
 import br.com.senior.model.OrderEntity;
 import br.com.senior.model.OrderItemEntity;
+import br.com.senior.model.enums.ItemTypeEnum;
 import br.com.senior.repository.ItemRepository;
 import br.com.senior.repository.OrderItemRepository;
 import br.com.senior.repository.OrderRepository;
@@ -33,17 +34,18 @@ public class TestConfig implements CommandLineRunner {
         ItemEntity item1 = new ItemEntity();
 		item1.setDescription("Descrição teste");
 		item1.setValue(43.5435);
-		item1.setType('R');
+		item1.setType(ItemTypeEnum.P);
 
         ItemEntity item2 = new ItemEntity();
 		item2.setDescription("Descrição teste 2");
-		item2.setValue(43.5435);
-		item2.setType('S');
+		item2.setValue(4.500);
+		item2.setType(ItemTypeEnum.S);
 
         ItemEntity item3 = new ItemEntity();
 		item3.setDescription("Descrição teste 3");
-		item3.setValue(43.5435);
-		item3.setType('S');
+		item3.setValue(3.200);
+		item3.setType(ItemTypeEnum.S);
+
 
 		OrderEntity order1 = new OrderEntity();
 		order1.setNumber(1);

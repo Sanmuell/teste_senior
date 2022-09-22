@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
+import br.com.senior.model.enums.ItemTypeEnum;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
@@ -37,12 +38,13 @@ public class ItemEntity implements Serializable {
     private Double value;
 
     @Column(name = "item_type")
-    private Character type;
+    @Enumerated(EnumType.STRING)
+    private ItemTypeEnum type;
 
     public ItemEntity(){}
 
 
-    public ItemEntity(UUID itemId, String description, Double value, Character type) {
+    public ItemEntity(UUID itemId, String description, Double value, ItemTypeEnum type) {
         this.itemId = itemId;
         this.description = description;
         this.value = value;
@@ -73,11 +75,11 @@ public class ItemEntity implements Serializable {
         this.value = value;
     }
 
-    public Character getType() {
+    public ItemTypeEnum getType() {
         return type;
     }
 
-    public void setType(Character type) {
+    public void setType(ItemTypeEnum type) {
         this.type = type;
     }
 }

@@ -1,5 +1,6 @@
 package br.com.senior.model.dto;
 
+import br.com.senior.model.enums.ItemTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ public class ItemDTO {
 
 	private String description;
 	private Double value;
-	private Character type;
+	private ItemTypeEnum type;
 
 
 }
