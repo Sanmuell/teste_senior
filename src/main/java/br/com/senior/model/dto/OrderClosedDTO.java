@@ -1,8 +1,6 @@
 package br.com.senior.model.dto;
 
 
-import antlr.collections.List;
-import br.com.senior.model.OrderEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -12,8 +10,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderCloseDTO {
-
+public class OrderClosedDTO {
     public UUID id;
     public Integer number;
     @JsonFormat(pattern = "dd/MM/yyyy")

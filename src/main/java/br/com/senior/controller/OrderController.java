@@ -8,7 +8,11 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.senior.model.OrderEntity;
+import br.com.senior.model.OrderItemEntity;
+import br.com.senior.model.dto.OrderClosedDTO;
+import br.com.senior.model.dto.OrderItemResultDTO;
 import br.com.senior.repository.OrderRepository;
+import br.com.senior.service.OrderItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.senior.service.OrderService;
 import br.com.senior.model.dto.OrderDTO;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -24,6 +29,10 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+
+	@Autowired
+	private OrderItemService orderItemService;
+
 
 	@Autowired
 	private OrderRepository orderRepository;
@@ -68,5 +77,7 @@ public class OrderController {
 		orderService.delete(orderID);
 
 	}
+
+
 
 }

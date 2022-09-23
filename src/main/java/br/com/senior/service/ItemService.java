@@ -26,6 +26,7 @@ public class ItemService {
 	public List<ItemEntity> list() {
 		return itemRepository.findAll();
 
+
 	}
 
 	@Transactional

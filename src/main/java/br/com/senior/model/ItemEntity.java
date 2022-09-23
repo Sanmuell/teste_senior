@@ -1,19 +1,12 @@
 package br.com.senior.model;
 
-import java.io.Serializable;
-import java.util.UUID;
-
+import br.com.senior.model.enums.ItemTypeEnum;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
-
-import br.com.senior.model.enums.ItemTypeEnum;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
+import java.util.UUID;
 
 //@AllArgsConstructor
 //@NoArgsConstructor
@@ -21,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 //@Getter
 @Entity
 @Table(name = "ITEMS_TB")
-public class ItemEntity implements Serializable {
+public class ItemEntity extends RepresentationModel<ItemEntity> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

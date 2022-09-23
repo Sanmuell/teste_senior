@@ -5,6 +5,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 
+import br.com.senior.model.OrderEntity;
+import br.com.senior.model.dto.OrderClosedDTO;
+import br.com.senior.model.dto.OrderItemResultDTO;
+import br.com.senior.service.OrderService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +19,7 @@ import br.com.senior.service.OrderItemService;
 import br.com.senior.model.OrderItemEntity;
 import br.com.senior.model.dto.OrderItemDTO;
 import br.com.senior.repository.OrderItemRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -25,6 +30,9 @@ public class OrderItemController {
 
 	@Autowired
 	private OrderItemService orderItemService;
+
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping("/{orderId}/items/")
 	public List<OrderItemEntity> list() {
@@ -52,6 +60,18 @@ public class OrderItemController {
 		return ResponseEntity.ok(orderItemEntityRead);
 
 
+	}
+
+
+	@GetMapping("/{orderId}/close")
+	public OrderClosedDTO closeOrder(@PathVariable UUID orderId){
+		OrderEntity order = orderService.read(orderId).orElseThrow(()->
+				new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado!!"));
+
+		Optional<OrderItemEntity> itemsList = orderItemService.read(orderId);
+		List<OrderItemResultDTO> orderItemListDTOS = orderItemService.orderItemToDTO(itemsList);
+
+		return new OrderClosedDTO();
 	}
 
 }
